@@ -11,3 +11,5 @@ Forward messages from multiple Telegram channels or chats to one (or more) chat 
 ## Run
 `python3 forwardgram.py {YOUR_CONFIG_FILE}`
 Please note that in the first time initializing the script, you will be requried to validate your phone number using telegram API. This happens only at the first time (per session name).
+
+Manage By Ron Nachum
