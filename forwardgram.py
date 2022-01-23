@@ -3,6 +3,7 @@ from telethon.tl.types import InputChannel
 import yaml
 import sys
 import logging
+import os
 
 logging.basicConfig(level=logging.INFO,
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -11,6 +12,7 @@ logger = logging.getLogger(__name__)
 
 
 def start(config):
+    print('config["session_name"]', config["session_name"])
     client = TelegramClient(config["session_name"],
                             config["api_id"],
                             config["api_hash"])
@@ -51,6 +53,7 @@ def start(config):
 
 
 if __name__ == "__main__":
-    with open('./config.yml', 'rb') as f:
-        config = yaml.safe_load(f)
+    # with open('./config.yml', 'rb') as f:
+    #     config = yaml.safe_load(f)
+    config = os.environ
     start(config)
