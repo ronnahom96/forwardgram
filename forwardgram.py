@@ -1,4 +1,4 @@
-from telethon import TelegramClient, events, sync
+from telethon import TelegramClient, events
 from telethon.tl.types import InputChannel
 import yaml
 import sys
@@ -12,10 +12,9 @@ logger = logging.getLogger(__name__)
 
 
 def start(config):
-    print('config["session_name"]', config["session_name"])
-    client = TelegramClient(config["session_name"],
-                            config["api_id"],
-                            config["api_hash"])
+    api_id = os.environ.get('api_id')
+    api_hash = os.environ.get('api_hash')
+    client = TelegramClient(config["session_name"], api_id, api_hash)
     client.start()
 
     # dialogs = client.get_dialogs()
@@ -53,7 +52,6 @@ def start(config):
 
 
 if __name__ == "__main__":
-    # with open('./config.yml', 'rb') as f:
-    #     config = yaml.safe_load(f)
-    config = os.environ
+    with open('./config.yml', 'rb') as f:
+        config = yaml.safe_load(f)
     start(config)
