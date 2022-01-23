@@ -3,6 +3,5 @@ venv
 .vscode
 __pycache__
 *.exe
-config.yml
 *.session
 *.session-journal
