@@ -21,11 +21,11 @@ def start(config):
     output_channel_entities = []
     for d in client.iter_dialogs():
         if d.name in config["input_channel_names"] or d.entity.id in config["input_channel_ids"]:
-            logger.info(f"input channel name: {d.name}, id: {d.id}")
+            logging.info(f"input channel name: {d.name}, id: {d.id}")
             input_channels_entities.append(
                 InputChannel(d.entity.id, d.entity.access_hash))
         if d.name in config["output_channel_names"] or d.entity.id in config["output_channel_ids"]:
-            logger.info(f"output channel name: {d.name}, id: {d.id}")
+            logging.info(f"output channel name: {d.name}, id: {d.id}")
             output_channel_entities.append(
                 InputChannel(d.entity.id, d.entity.access_hash))
 
