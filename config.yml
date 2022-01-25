@@ -8,7 +8,8 @@ telegram_password: Ronitovd12
 input_channel_names:
   # - '🎯Crypto snipers🎯'
   # - 'ronh channel'
-  - 'CryptoSnipersVIP'
+  # - 'CryptoSnipersVIP'
+  - 'VIP CLUB'
   - 'VIP | Binance Master'
 
 # The output channel names that the messages will be forwarded to.
@@ -20,12 +21,13 @@ output_channel_names:
 input_channel_ids:
   # - -1001722157175 # 🎯Crypto snipers🎯
   # - -1001683787338 # ronh channel
-  - -1001560182023 # CryptoSnipersVIP
+  # - -1001560182023 # CryptoSnipersVIP
+  - -1001756092613 # VIP CLUB
   - 2083418232 # VIP | Binance Master
 
 # The output channel IDs that the messages will be forwarded to. (You can get a channel ID by forwarding any message from it to @userinfobot , and removing the -100 from the start )
 output_channel_ids: 
-  - -636848769 # ⭐️TopSignals⭐️'
+  - -1001716014718 # ⭐️TopSignals⭐️'
 
 # An empty list should be set like this: 
 # input_channel_ids: []
