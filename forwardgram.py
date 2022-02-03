@@ -1,9 +1,10 @@
+import os
 from telethon import TelegramClient, events
 from telethon.tl.types import InputChannel
 import yaml
 import sys
 import logging
-import os
+from dotenv import load_dotenv, find_dotenv
 
 logging.basicConfig(level=logging.INFO,
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -12,8 +13,8 @@ logger = logging.getLogger(__name__)
 
 
 def start(config):
-    api_id = os.environ.get('api_id')
-    api_hash = os.environ.get('api_hash')
+    api_id = os.environ.get('APP_ID')
+    api_hash = os.environ.get('API_HASH')
     client = TelegramClient(config["session_name"], api_id, api_hash)
     client.start()
 
@@ -53,6 +54,7 @@ def start(config):
 
 
 if __name__ == "__main__":
+    load_dotenv(find_dotenv())
     with open('./config.yml', 'rb') as f:
         config = yaml.safe_load(f)
     start(config)
