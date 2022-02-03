@@ -46,8 +46,12 @@ def start(config):
     @client.on(events.NewMessage(chats=input_channels_entities))
     async def handler(event):
         for output_channel in output_channel_entities:
-            logging.info(f"send message {event.message} to {output_channel}")
-            await client.send_message(output_channel, event.message)
+            if event.message.media:
+                print('media message')
+            else:
+                logging.info(
+                    f"send message {vars(event.message).get('message', '')} to channel id: {output_channel.channel_id}")
+                await client.send_message(output_channel, event.message)
 
     client.run_until_disconnected()
 
