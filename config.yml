@@ -8,6 +8,7 @@ telegram_password: Ronitovd12
 input_channel_names:
   # - '🎯Crypto snipers🎯'
   # - 'ronh channel'
+  # - 'CryptoSnipersVIPTest'
   - 'CryptoSnipersVIP'
   - 'VIP CLUB'
   # - 'VIP | Binance Master'
@@ -16,6 +17,7 @@ input_channel_names:
 # The user running the client must have a write access to those channels, and have the channels present on theirs dialogs.
 output_channel_names: 
   - '⭐️TopSignals⭐️'
+  # - '⭐️TopSignalsTest⭐️'
 
 # The channel IDs that you'd like to forward messages from. (You can get a channel ID by forwarding any message from it to @userinfobot , and removing the -100 from the start )
 input_channel_ids:
