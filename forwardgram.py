@@ -46,14 +46,22 @@ def start(config):
     @client.on(events.NewMessage(chats=input_channels_entities))
     async def handler(event):
         for output_channel in output_channel_entities:
-            if event.message.media:
-                print('media message')
-            else:
-                logging.info(
-                    f"send message {vars(event.message).get('message', '')} to channel id: {output_channel.channel_id}")
-                await client.send_message(output_channel, event.message)
+            if not event.message.media:
+                try:
+                    modify_event_message(event.message)
+                    logging.info(
+                        f"send message {event.message} to channel id: {output_channel.channel_id}")
+                    await client.send_message(output_channel, event.message)
+                except Exception as error:
+                    logging.error(f"Error: {error}")
 
     client.run_until_disconnected()
+
+
+def modify_event_message(event_message):
+    text_message = str(event_message.message)
+    new_text_message = text_message.replace('לא המלצה', '').replace('-', '')
+    event_message.message = new_text_message
 
 
 if __name__ == "__main__":
