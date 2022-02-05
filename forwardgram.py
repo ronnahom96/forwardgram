@@ -60,8 +60,9 @@ def start(config):
 
 def modify_event_message(event_message):
     text_message = str(event_message.message)
-    new_text_message = text_message.replace('לא המלצה', '').replace('-', '')
-    event_message.message = new_text_message
+    text_message = text_message.replace(
+        '\n--------------------\n\n-\nלא המלצה', '')
+    event_message.message = text_message
 
 
 if __name__ == "__main__":

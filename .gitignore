@@ -3,8 +3,8 @@ venv
 .vscode
 __pycache__
 *.exe
-# *.session
-# *.session-journal
+*.session
+*.session-journal
 .env
 *.pem
 *.ppk
