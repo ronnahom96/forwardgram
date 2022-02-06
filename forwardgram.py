@@ -18,9 +18,9 @@ def start(config):
     client = TelegramClient(config["session_name"], api_id, api_hash)
     client.start()
 
-    dialogs = client.get_dialogs()
-    print(dialogs)
-
+    # dialogs = client.get_dialogs()
+    # print(dialogs)
+    
     input_channels_entities = []
     output_channel_entities = []
     for d in client.iter_dialogs():
