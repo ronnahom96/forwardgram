@@ -29,7 +29,7 @@ input_channel_ids:
 
 # The output channel IDs that the messages will be forwarded to. (You can get a channel ID by forwarding any message from it to @userinfobot , and removing the -100 from the start )
 output_channel_ids: 
-  - -1001716014718 # ⭐️TopSignals⭐️'
+  - -1001738452085 # ⭐️TopSignals⭐️'
 
 # An empty list should be set like this: 
 # input_channel_ids: []
