@@ -9,7 +9,7 @@ input_channel_names:
   # - '🎯Crypto snipers🎯'
   # - 'ronh channel'
   # - 'CryptoSnipersVIPTest'
-  - 'CryptoSnipersVIP'
+  # - 'CryptoSnipersVIP'
   - 'VIP CLUB'
   # - 'VIP | Binance Master'
 
@@ -23,7 +23,7 @@ output_channel_names:
 input_channel_ids:
   # - -1001722157175 # 🎯Crypto snipers🎯
   # - -1001683787338 # ronh channel
-  - -1001560182023 # CryptoSnipersVIP
+  # - -1001560182023 # CryptoSnipersVIP
   - -1001756092613 # VIP CLUB
   # - 2083418232 # VIP | Binance Master
 
