@@ -1,4 +1,3 @@
-from msilib.schema import Error
 import os
 from telethon import TelegramClient, events
 from telethon.tl.types import InputChannel
