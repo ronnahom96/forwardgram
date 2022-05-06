@@ -63,7 +63,7 @@ def start(config):
     except ConnectionError:  # catches the ConnectionError and starts the connections process again
         print('ConnectionError... Reconnection now...')
         start()
-    except Error as error:
+    except Exception as error:
         print('General error was occured, Reconnection now...', error)
         start()
 
