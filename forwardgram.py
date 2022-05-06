@@ -1,3 +1,4 @@
+from msilib.schema import Error
 import os
 from telethon import TelegramClient, events
 from telethon.tl.types import InputChannel
@@ -21,7 +22,7 @@ def start(config):
 
         # dialogs = client.get_dialogs()
         # print(dialogs)
-        
+
         input_channels_entities = []
         output_channel_entities = []
         for d in client.iter_dialogs():
@@ -60,8 +61,11 @@ def start(config):
                         logging.error(f"Error: {error}")
 
         client.run_until_disconnected()
-    except ConnectionError: #catches the ConnectionError and starts the connections process again
+    except ConnectionError:  # catches the ConnectionError and starts the connections process again
         print('ConnectionError... Reconnection now...')
+        start()
+    except Error as error:
+        print('General error was occured, Reconnection now...', error)
         start()
 
 
