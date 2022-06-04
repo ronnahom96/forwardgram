@@ -14,15 +14,13 @@ logger = logging.getLogger(__name__)
 MAX_RETRIES_NUMBER = 3
 config = {}
 
-def start(config, retries_number = 0):
+
+def start(config, retries_number=0):
     try:
         api_id = os.environ.get('APP_ID')
         api_hash = os.environ.get('API_HASH')
         client = TelegramClient(config["session_name"], api_id, api_hash)
         client.start()
-
-        # dialogs = client.get_dialogs()
-        # print(dialogs)
 
         input_channels_entities = []
         output_channel_entities = []
