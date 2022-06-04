@@ -11,8 +11,10 @@ logging.basicConfig(level=logging.INFO,
 logging.getLogger('telethon').setLevel(level=logging.WARNING)
 logger = logging.getLogger(__name__)
 
+MAX_RETRIES_NUMBER = 3
+config = {}
 
-def start(config):
+def start(config, retries_number = 0):
     try:
         api_id = os.environ.get('APP_ID')
         api_hash = os.environ.get('API_HASH')
@@ -64,8 +66,10 @@ def start(config):
         print('ConnectionError... Reconnection now...')
         start()
     except Exception as error:
-        print('General error was occured, Reconnection now...', error)
-        start()
+        print('General error was occurred, Reconnection now...', error)
+        retries_number = retries_number + 1
+        if (retries_number < MAX_RETRIES_NUMBER):
+            start(config, retries_number)
 
 
 def modify_event_message(event_message):
