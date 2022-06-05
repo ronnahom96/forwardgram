@@ -2,28 +2,29 @@ session_name: "forwardgram" # Session name. Only one session (with a unique sess
 
 phone: "972549105922"
 telegram_password: Ronitovd12
+# phone: "972527469858"
 
 # The channel names that you'd like to forward messages from.
 # The user running the client must have these channels present on it's dialogs.
 input_channel_names:
   # - '🎯Crypto snipers🎯'
-  # - 'ronh channel'
   # - 'CryptoSnipersVIPTest'
   # - 'CryptoSnipersVIP'
   - "VIP CLUB"
   # - 'VIP | Binance Master'
+  # - "TopSignalTestInput"
 
 # The output channel names that the messages will be forwarded to.
 # The user running the client must have a write access to those channels, and have the channels present on theirs dialogs.
 output_channel_names:
   - "⭐TopSignals⭐"
   - "Top Signals Premium⚡️"
+  # - "TopSignalTestOutput"
   # - '⭐️TopSignalsTest⭐️'
 
 # The channel IDs that you'd like to forward messages from. (You can get a channel ID by forwarding any message from it to @userinfobot , and removing the -100 from the start )
 input_channel_ids:
   # - -1001722157175 # 🎯Crypto snipers🎯
-  # - -1001683787338 # ronh channel
   # - -1001560182023 # CryptoSnipersVIP
   - -1001756092613 # VIP CLUB
   # - 2083418232 # VIP | Binance Master
@@ -32,6 +33,3 @@ input_channel_ids:
 output_channel_ids:
   - 1738452085 # ⭐TopSignals⭐'
   - -1001792179423 # Top Signals Premium⚡️
-
-# An empty list should be set like this:
-# input_channel_ids: []
