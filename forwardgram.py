@@ -36,7 +36,7 @@ def start(config, retries_number=0):
                     try:
                         modify_event_message(event.message)
                         logging.info(
-                            f"send message {event.message.get('message', 'No message')} to channel id: {output_channel.channel_id}")
+                            f"send message {event.message.message} to channel id: {output_channel.channel_id}")
                         await client.send_message(output_channel, event.message)
                     except Exception as error:
                         logging.error(f"Error: {error}")
