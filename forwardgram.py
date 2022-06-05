@@ -31,7 +31,15 @@ def start(config, retries_number=0):
 
         @client.on(events.NewMessage(chats=input_channels_entities))
         async def handler(event):
-            handle_event_message(event, output_channel_entities)
+            for output_channel in output_channel_entities:
+                if not event.message.media:
+                    try:
+                        modify_event_message(event.message)
+                        logging.info(
+                            f"send message {event.message.get('message', 'No message')} to channel id: {output_channel.channel_id}")
+                        await client.send_message(output_channel, event.message)
+                    except Exception as error:
+                        logging.error(f"Error: {error}")
 
         client.run_until_disconnected()
     except ConnectionError:  # catches the ConnectionError and starts the connections process again
@@ -42,19 +50,6 @@ def start(config, retries_number=0):
         retries_number = retries_number + 1
         if (retries_number < MAX_RETRIES_NUMBER):
             start(config, retries_number)
-
-
-def handle_event_message(event, output_channel_entities, client):
-    for output_channel in output_channel_entities:
-        if not event.message.media:
-            try:
-                modify_event_message(event.message)
-                logging.info(
-                    f"send message {event.message.get('message', 'No message')} to channel id: {output_channel.channel_id}")
-                await client.send_message(output_channel, event.message)
-            except Exception as error:
-                logging.error(f"Error: {error}")
-
 
 def build_input_output_channels(client):
     input_channels_entities = []
