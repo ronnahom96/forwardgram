@@ -9,7 +9,7 @@ from dotenv import load_dotenv, find_dotenv
 MAX_RETRIES_NUMBER = 3
 MAX_IGNORE_MESSAGE_COUNTER = 7
 VIP_ID = 1792179423
-CRYPTO_NOTIFICATION_SIGN = 'Exchanges:'
+CRYPTO_NOTIFICATION_SIGN = '⚡️⚡️'
 
 
 class Forwardgram:
@@ -45,17 +45,17 @@ class Forwardgram:
                         text_message = self.extract_text_from_event(event)
                         if VIP_ID == output_channel.channel_id:
                             self.logger.info(
-                                f"send message {text_message} to channel id: {output_channel.channel_id}")
+                                f"send premium group message {text_message} group id: {output_channel.channel_id}")
                             await self.client.send_message(output_channel, event.message)
-                        elif CRYPTO_NOTIFICATION_SIGN not in text_message:
-                            return self.logger.info(f"skip on the message {text_message} because it is not a crypto notification and it not a premium channel")
-                        else:
+                        elif CRYPTO_NOTIFICATION_SIGN in text_message:
                             if self.ignore_message_counter % MAX_IGNORE_MESSAGE_COUNTER == 0:
                                 self.modify_event_message(event.message)
-                                self.logger.info(f"send message {vars(event.message).get('message', 'No message')} to channel id: {output_channel.channel_id}")
+                                self.logger.info(f"send regular group message {vars(event.message).get('message', 'No message')} to channel id: {output_channel.channel_id}")
                                 await self.client.send_message(output_channel, event.message)
 
-                            self.ignore_message_counter = self.ignore_message_counter + 1
+                            self.ignore_message_counter = self.ignore_message_counter + 1                            
+                        else:
+                            self.logger.info(f"skip on the message {text_message} because it is not a crypto notification and it not a premium channel")
                     except Exception as error:
                         self.logger.error(f"Error: {error}")
 
