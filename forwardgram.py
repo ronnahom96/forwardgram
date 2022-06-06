@@ -8,9 +8,9 @@ from dotenv import load_dotenv, find_dotenv
 
 MAX_RETRIES_NUMBER = 3
 MAX_IGNORE_MESSAGE_COUNTER = 7
-VIP_ID = 1792179423
+VIP_KEYWORD = 'Premium'
 CRYPTO_NOTIFICATION_SIGN = '⚡️⚡️'
-
+# VIP_ID = 1792179423
 
 class Forwardgram:
     def __init__(self, client, config, logger):
@@ -19,6 +19,7 @@ class Forwardgram:
         self.logger = logger
         self.input_channels_entities = []
         self.output_channel_entities = []
+        self.channel_ids_names = {}
         self.retries_number = 0
         self.ignore_message_counter = 0
 
@@ -29,7 +30,7 @@ class Forwardgram:
         try:
             self.client.start()
 
-            self.input_channels_entities, self.output_channel_entities = self.build_input_output_channels(
+            self.input_channels_entities, self.output_channel_entities, self.channel_ids_names = self.build_input_output_channels(
                 self.config)
 
             self.logger.info(
@@ -43,7 +44,8 @@ class Forwardgram:
 
                     try:
                         text_message = self.extract_text_from_event(event)
-                        if VIP_ID == output_channel.channel_id:
+                        channel_name = self.channel_ids_names[output_channel.channel_id]
+                        if VIP_KEYWORD in channel_name:
                             self.logger.info(
                                 f"send premium group message {text_message} group id: {output_channel.channel_id}")
                             await self.client.send_message(output_channel, event.message)
@@ -72,15 +74,18 @@ class Forwardgram:
     def build_input_output_channels(self, config):
         input_channels_entities = []
         output_channel_entities = []
+        channel_ids_names = {}
         for d in self.client.iter_dialogs():
             if d.name in config["input_channel_names"] or d.entity.id in config["input_channel_ids"]:
                 self.logger.info(f"input channel name: {d.name}, id: {d.id}")
                 input_channels_entities.append(
                     InputChannel(d.entity.id, d.entity.access_hash))
+                channel_ids_names[d.entity.id] = d.name
             if d.name in config["output_channel_names"] or d.entity.id in config["output_channel_ids"]:
                 self.logger.info(f"output channel name: {d.name}, id: {d.id}")
                 output_channel_entities.append(
                     InputChannel(d.entity.id, d.entity.access_hash))
+                channel_ids_names[d.entity.id] = d.name
 
         if not output_channel_entities:
             self.logger.error(
@@ -92,7 +97,7 @@ class Forwardgram:
                 f"Could not find any input channels in the user's dialogs")
             sys.exit(1)
 
-        return input_channels_entities, output_channel_entities
+        return input_channels_entities, output_channel_entities, channel_ids_names
 
     @staticmethod
     def extract_text_from_event(event):

@@ -13,6 +13,7 @@ input_channel_names:
   - "VIP CLUB"
   # - 'VIP | Binance Master'
   # - "TopSignalTestInput"
+  # - "TopSignalTest"
 
 # The output channel names that the messages will be forwarded to.
 # The user running the client must have a write access to those channels, and have the channels present on theirs dialogs.
@@ -28,6 +29,7 @@ input_channel_ids:
   # - -1001560182023 # CryptoSnipersVIP
   - -1001756092613 # VIP CLUB
   # - 2083418232 # VIP | Binance Master
+  # - 1
 
 # The output channel IDs that the messages will be forwarded to. (You can get a channel ID by forwarding any message from it to @userinfobot , and removing the -100 from the start )
 output_channel_ids:
