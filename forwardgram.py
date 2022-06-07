@@ -47,18 +47,18 @@ class Forwardgram:
                         channel_name = self.channel_ids_names[output_channel.channel_id]
                         if VIP_KEYWORD in channel_name:
                             self.logger.info(
-                                f"send premium group message {text_message} group id: {output_channel.channel_id}")
+                                f"send premium group message to {channel_name} | {text_message}")
                             await self.client.send_message(output_channel, event.message)
                         elif CRYPTO_NOTIFICATION_SIGN in text_message:
                             if self.ignore_message_counter % MAX_IGNORE_MESSAGE_COUNTER == 0:
                                 self.modify_event_message(event.message)
-                                self.logger.info(f"send regular group message {vars(event.message).get('message', 'No message')} to channel id: {output_channel.channel_id}")
+                                self.logger.info(f"send regular group message to channel id: {output_channel.channel_id} | {text_message}")
                                 await self.client.send_message(output_channel, event.message)
 
                             self.logger.info(f"Increase the ignore message counter from {self.ignore_message_counter} to {self.ignore_message_counter + 1}")
                             self.ignore_message_counter = self.ignore_message_counter + 1                            
                         else:
-                            self.logger.info(f"skip on the message {text_message} because it is not a crypto notification and it not a premium channel")
+                            self.logger.info(f"skip because it's not a notification or premium channel | {text_message}")
                     except Exception as error:
                         self.logger.error(f"Error: {error}")
 
