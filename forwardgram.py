@@ -55,6 +55,7 @@ class Forwardgram:
                                 self.logger.info(f"send regular group message {vars(event.message).get('message', 'No message')} to channel id: {output_channel.channel_id}")
                                 await self.client.send_message(output_channel, event.message)
 
+                            self.logger.info(f"Increase the ignore message counter from {self.ignore_message_counter} to {self.ignore_message_counter + 1}")
                             self.ignore_message_counter = self.ignore_message_counter + 1                            
                         else:
                             self.logger.info(f"skip on the message {text_message} because it is not a crypto notification and it not a premium channel")
